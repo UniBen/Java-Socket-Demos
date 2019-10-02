@@ -12,7 +12,7 @@ import java.net.*;
 import java.io.*;
 
 public class Server4 {
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 
 		int port;
 
@@ -22,20 +22,17 @@ public class Server4 {
 			port = 6001;
 		}
 
-		MultiThreadServer mts = new MultiThreadServer(port);
+		new MultiThreadServer(port);
 	}
 } // class Server4
 
 
 class MultiThreadServer {
 
-	ServerSocket sock;
-	Socket conn;
-	int port;
+	private ServerSocket sock;
 
 	//  establish server socket and listen for client
 	MultiThreadServer(int port) {
-		this.port = port;
 
 		try {
 			sock = new ServerSocket(port);
@@ -48,8 +45,8 @@ class MultiThreadServer {
 
 		while (true) {
 			try {
-				conn = sock.accept();       //  listen for client connection
-				ClientHandler ch = new ClientHandler(conn);
+				Socket conn = sock.accept();       //  listen for client connection
+				new ClientHandler(conn);
 				System.out.println("new client connection");
 			} catch(Exception e) {
 				System.out.println("Error : " + e);
@@ -62,13 +59,13 @@ class MultiThreadServer {
 
 
 class ClientHandler implements Runnable {
-	Socket conn;
-	Thread clientThread;
+	private Socket conn;
+	private Thread clientThread;
 
-	BufferedReader instream;
-	BufferedWriter outstream;
+	private BufferedReader instream;
+	private BufferedWriter outstream;
 
-	String str;
+	private String str;
 
 	ClientHandler(Socket connin) {
 		conn = connin;
@@ -76,7 +73,7 @@ class ClientHandler implements Runnable {
 		clientThread.start();
 	} // end ClientHandler constructor
 
-	public void stop() {
+	private void stop() {
 		try {
 			conn.close();
 		}

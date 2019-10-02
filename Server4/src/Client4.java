@@ -16,7 +16,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class Client4 {
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		String host;
 		int port;
 		ClientInterface cl;
@@ -39,31 +39,24 @@ public class Client4 {
 
 
 class ClientInterface extends JFrame implements ActionListener {
-	Socket conn;
-	String host;
-	int port;
+	private Socket conn;
 
-	BufferedReader instream;
-	BufferedWriter outstream;
+	private BufferedReader instream;
+	private BufferedWriter outstream;
 
-	JTextField message, reply;
-	JLabel messageLabel, replyLabel;
-	JButton send;
-	String str;
-	String text;
+	private JTextField message, reply;
+	private JButton send;
+	private String str;
 
 	// connect to server
 	ClientInterface(String frameTitle, String hostName, int portNo) {
 
-		host = hostName;
-		port = portNo;
-
 		try {
-			conn = new Socket(host,port);
+			conn = new Socket(hostName, portNo);
 			System.out.println("ClientInterface started");
 		} catch(Exception e) {
 			System.out.println("Error : " + e);
-			System.out.println("Can't connect to " + host + " on port " + port);
+			System.out.println("Can't connect to " + hostName + " on port " + portNo);
 			System.exit(1);
 		}
 
@@ -87,9 +80,9 @@ class ClientInterface extends JFrame implements ActionListener {
 		Container cp = this.getContentPane();
 		cp.setLayout(new GridLayout(5,1));
 
-		messageLabel = new JLabel("Enter message and click Send");
+		JLabel messageLabel = new JLabel("Enter message and click Send");
 		message = new JTextField("",20);
-		replyLabel = new JLabel("reply from server : ");
+		JLabel replyLabel = new JLabel("reply from server : ");
 
 		try {
 			str = instream.readLine();   // wait for server's first message
@@ -124,7 +117,7 @@ class ClientInterface extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent event) {
 		send.removeActionListener(this);   // ignore button clicks
-		text = message.getText();
+		String text = message.getText();
 		try {
 			outstream.write(text);         // send message to server
 			outstream.newLine();

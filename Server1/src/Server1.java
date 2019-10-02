@@ -12,23 +12,22 @@ import java.net.*;
 import java.io.*;
 
 public class Server1 {
-	public static void main(String args[]) {
-		SimpleServer ss = new SimpleServer(6001) ;
+	public static void main(String[] args) {
+		new SimpleServer(6001) ;
 	}
 } // class Server1
 
 class SimpleServer {
-	ServerSocket sock;
-	Socket conn;
+	private Socket conn;
 
-	BufferedReader instream;
-	BufferedWriter outstream;
-	String str;
+	private BufferedReader instream;
+	private BufferedWriter outstream;
+	private String str;
 
 	//  establish server socket and listen for client
 	SimpleServer(int port) {
 		try {
-			sock = new ServerSocket(port);
+			ServerSocket sock = new ServerSocket(port);
 			System.out.println("Started on port " + port);
 
 			conn = sock.accept();       //  listen for client connection
@@ -60,7 +59,7 @@ class SimpleServer {
 		do {
 			try {
 				// wait for client to send data
-				str = instream.readLine();;
+				str = instream.readLine();
 
 				// send a reply to client
 				outstream.write("You said " + str);
