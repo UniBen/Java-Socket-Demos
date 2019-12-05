@@ -1,8 +1,0 @@
-version: '3.7'
-
-services:
-  java:
-    image: 'openjdk'
-    volumes:
-      - ./:/src
-    working_dir: '/src'

@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  server_1:
+    image: 'openjdk'
+    ports:
+      - 6002
+    working_dir: '/src'
+    command: ["java", "-classpath /src/Server1", "Server1"]
+    volumes:
+      - ./Server1:/src/Server1
+  server_4:
+    image: 'openjdk'
+    ports:
+      - 6001
+    working_dir: '/src'
+    command: ["java", "-classpath /src/Server4", "Server4"]
+    volumes:
+      - ./Server4:/src/Server4
