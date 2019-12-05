@@ -5,4 +5,4 @@ services:
     image: 'openjdk'
     volumes:
       - ./:/src
-    workdir: '/src'
+    working_dir: '/src'
