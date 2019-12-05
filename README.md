@@ -2,6 +2,8 @@ Java Socket Demos
 
 Dr Gary Allen, The University of Huddersfield
 
+[![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/UniBen/Java-Socket-Demos/master/docker-compose.yml)
+
 Two Java Socket Demos for use by students.
 
 Server1 is a single threaded server that can only handle a single client and shuts down when the client terminates the connection.  It echoes strings received from client back to the client and shuts down on receipt of string "bye".  Connect to it with nc, ssh, etc.
